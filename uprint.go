@@ -7,11 +7,7 @@ import (
 )
 
 // New inits font and driver.
-// Accepted fonts are:
-// - 'font6x8'
-// - 'font7x10'
-// - 'font11x18'
-// - 'font16x26'
+// Accepted fonts are: 'font6x8', 'font7x10', 'font11x18', 'font16x26'.
 func New(d drivers.Displayer, fname string) *text {
 	return &text{
 		d: d,
