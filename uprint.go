@@ -2,13 +2,17 @@ package uprint
 
 import (
 	"image/color"
+
+	"tinygo.org/x/drivers"
 )
 
-type device interface {
-	SetPixel(x int16, y int16, c color.RGBA)
-}
-
-func New(d device, fname string) *text {
+// New inits font and driver.
+// Accepted fonts are:
+// - 'font6x8'
+// - 'font7x10'
+// - 'font11x18'
+// - 'font16x26'
+func New(d drivers.Displayer, fname string) *text {
 	return &text{
 		d: d,
 		f: fonts[fname],
@@ -16,7 +20,7 @@ func New(d device, fname string) *text {
 }
 
 type text struct {
-	d device
+	d drivers.Displayer
 	f font
 }
 
@@ -41,6 +45,7 @@ func (t *text) insertChar(char byte, x, y int, c color.RGBA) {
 	}
 }
 
+// Print prints string at specific coordinates.
 func (t *text) Print(s string, x, y int, c color.RGBA) {
 	for _, char := range []byte(s) {
 		t.insertChar(char, x, y, c)
