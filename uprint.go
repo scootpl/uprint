@@ -8,24 +8,24 @@ import (
 
 // New inits font and driver.
 // Accepted fonts are: 'font6x8', 'font7x10', 'font11x18', 'font16x26'.
-func New(d drivers.Displayer, fname string) *text {
-	return &text{
+func New(d drivers.Displayer, fname string) *Display {
+	return &Display{
 		d: d,
 		f: fonts[fname],
 	}
 }
 
-type text struct {
+type Display struct {
 	d drivers.Displayer
 	f font
 }
 
-func (t *text) isSet(n uint16, bit int) bool {
+func (t *Display) isSet(n uint16, bit int) bool {
 	val := n & (1 << (16 - bit))
 	return (val > 0)
 }
 
-func (t *text) insertChar(char byte, x, y int, c color.RGBA) {
+func (t *Display) insertChar(char byte, x, y int, c color.RGBA) {
 	char -= 32 // "space" ascii code
 	var c1 color.RGBA
 
@@ -42,7 +42,7 @@ func (t *text) insertChar(char byte, x, y int, c color.RGBA) {
 }
 
 // Print prints string at specific coordinates.
-func (t *text) Print(s string, x, y int, c color.RGBA) {
+func (t *Display) Print(s string, x, y int, c color.RGBA) {
 	for _, char := range []byte(s) {
 		t.insertChar(char, x, y, c)
 		x += t.f.width
