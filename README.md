@@ -7,7 +7,7 @@ uPrint (microPrint) is a simple TinyGo library to print text on OLED display. Dr
 
 ```go
 	p := uprint.New(&device, "font7x10")
-    p.Print("Hello!", 0, 0, color.RGBA{R: 0xff, G: 0xff, B: 0xff, A: 0xff})
+	p.Print("Hello!", 0, 0, color.RGBA{R: 0xff, G: 0xff, B: 0xff, A: 0xff})
 
 	device.Display()
 ```
