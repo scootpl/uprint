@@ -11,3 +11,6 @@ uPrint (microPrint) is a simple TinyGo library to print text on OLED display. Dr
 
 	device.Display()
 ```
+
+---
+fonts downloaded from: https://github.com/Nondzu/ssd1306_font
